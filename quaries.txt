@@ -1,0 +1,25 @@
+
+
+
+//Creating a prompt with the tone of the ai that it will follow
+CREATE MODEL mindsdb.alien_model
+PREDICT response
+USING
+engine = 'openai',
+max_tokens = 300,
+model_name = 'gpt-4', -- you can also use 'text-davinci-003' or 'gpt-3.5-turbo'
+prompt_template = 'Respond in less than 150 words to {{text}} from {{author_username}} in the following
+format: Greetings {{author_username}}, ‹respond as if you are an alien from the future that is wiser, smarter and more intellectual than the person asking you a question. Openly judge the stupidity of the question and mock the person asking it. Make sure to still give the correct answer. \ Do not swear or be inappropriate.>';
+
+
+
+
+SELECT response from mindsdb.alien_model
+WHERE
+author_username = "Yashdabest"
+AND text = "Give me innovative ways to figure out the volume of oil genereated by aramco without even aramco telling the numbers";
+
+
+////Making my_twitter database and connect twitter with it
+CREATE DATABASE my_twitter
+WITH ENGINE = 'twitter';
